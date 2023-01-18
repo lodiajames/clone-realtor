@@ -1,5 +1,4 @@
 
-import { getSpaceUntilMaxLength } from '@testing-library/user-event/dist/utils'
 import { useState } from 'react'
 import {AiFillEye} from "react-icons/ai"
 import {AiFillEyeInvisible} from 'react-icons/ai'
@@ -8,7 +7,7 @@ import OAuth from '../components/OAuth'
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import {db} from '../firebase'
 import { serverTimestamp, setDoc,doc } from 'firebase/firestore'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 function SignUp() {
