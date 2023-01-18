@@ -1,9 +1,15 @@
 
+import { getSpaceUntilMaxLength } from '@testing-library/user-event/dist/utils'
 import { useState } from 'react'
 import {AiFillEye} from "react-icons/ai"
 import {AiFillEyeInvisible} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import OAuth from '../components/OAuth'
+import {getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
+import {db} from '../firebase'
+import { serverTimestamp, setDoc,doc } from 'firebase/firestore'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function SignUp() {
 const [formData, setFormData] = useState({
@@ -14,13 +20,40 @@ const [formData, setFormData] = useState({
 const [showPassword, setShowPassword] = useState(false)
 
 const { name, email, password} = formData
+const navigate = useNavigate()
 function onChange(e) {
   e.preventDefault()
   setFormData((prev)=>({
     ...prev, [e.target.id]: e.target.value,
   }))
-  console.log(e.target.value);
+ 
 } 
+
+
+async function onSubmit(e){
+    e.preventDefault()
+
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      updateProfile(auth.currentUser, {
+         displayName: name
+      })
+     
+      const user = userCredential.user;
+      const formDataCopy = {...formData}
+      delete formDataCopy.password
+      formDataCopy.timestamp = serverTimestamp();
+      // saving user to the database
+     await setDoc(doc(db, "users", user.uid), formDataCopy)
+      toast.success('successfully login')
+     navigate('/')
+
+    } catch (error) {
+      toast.error('oops something went wrong!')
+      
+    }
+}
 
   return (
     <section>
@@ -30,7 +63,7 @@ function onChange(e) {
                <img className='w-full rounded-2xl' src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8a2V5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="login"  />
           </div>
           <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-               <form className=''>
+               <form className='' onSubmit={onSubmit}>
                <input type="text" id='name' value={name} placeholder='Full name' onChange={onChange} 
                    className='w-full px-4 mb-6  py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out' />
                    <input type="email" id='email' value={email} placeholder='Email' onChange={onChange} 
