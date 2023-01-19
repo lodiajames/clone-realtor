@@ -726,6 +726,10 @@ select {
   position: static;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -932,6 +936,16 @@ select {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-\[50\%\] {
+  padding-top: 50%;
+  padding-bottom: 50%;
+}
+
+.py-\[20\%\] {
+  padding-top: 20%;
+  padding-bottom: 20%;
 }
 
 .text-center {
