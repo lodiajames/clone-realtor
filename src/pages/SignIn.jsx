@@ -2,8 +2,12 @@
 import { useState } from 'react'
 import {AiFillEye} from "react-icons/ai"
 import {AiFillEyeInvisible} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import OAuth from '../components/OAuth'
+import {signInWithEmailAndPassword, getAuth} from 'firebase/auth'
+import {toast} from 'react-toastify'
+
+
 
 function SignIn() {
 const [formData, setFormData] = useState({
@@ -11,6 +15,7 @@ const [formData, setFormData] = useState({
     password: ""
 })
 const [showPassword, setShowPassword] = useState(false)
+const navigate= useNavigate()
 
 const {email, password} = formData
 function onChange(e) {
@@ -18,9 +23,22 @@ function onChange(e) {
   setFormData((prev)=>({
     ...prev, [e.target.id]: e.target.value,
   }))
-  console.log(e.target.value);
+  // console.log(e.target.value);
 } 
 
+async function onSubmit(e){
+    e.preventDefault()
+    try {
+      const auth = getAuth()
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      if(userCredential.user){
+        navigate('/')
+      }
+    } catch (error) {
+      toast.error("No user find with these credentials")
+      
+    }
+}
   return (
     <section>
         <h1 className='text-3xl text-center mt-6 font-bold'>Sign In </h1>
@@ -29,7 +47,7 @@ function onChange(e) {
                <img className='w-full rounded-2xl' src="https://plus.unsplash.com/premium_photo-1661775023997-2383f2cb7e9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGtleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="login"  />
           </div>
           <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-               <form className=''>
+               <form className='' onSubmit={onSubmit}>
                    <input type="email" id='email' value={email} placeholder='Email' onChange={onChange} 
                    className='w-full px-4 mb-6  py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out' />
                     
