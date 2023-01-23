@@ -309,7 +309,7 @@ export default function CreateListing() {
         <p className='text-lg font-semibold'>Images</p>
         <p className='text-gray-600'>Your image will be 6 max </p>
         <input  className="w-full px-3 py-1.5 text-gray-700 bg-white border border-gray-300 rounded
-        transition duration-150 ease-in-out focus:bg-white focus:border-slate-600" type="file" id="images" onChange={onChange} accept=".jpg,.png,.jpeg,.psd" max='6' />
+        transition duration-150 ease-in-out focus:bg-white focus:border-slate-600" type="file" id="images" onChange={onChange} accept=".jpg,.png,.jpeg,.psd" max='6' multiple />
 
        </div>
        <button className='w-full mb-6 px-7 py-3 bg-blue-600 text-white font-medium
