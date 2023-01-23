@@ -95,11 +95,14 @@ export default function EditListing() {
       toast.error("Discounted price needs to be less than regular price");
       return;
     }
+   
+    
     if (images.length > 6) {
       setLoading(false);
       toast.error("maximum 6 images are allowed");
       return;
     }
+  
     let geolocation = {};
     let location;
     if (geolocEnabled) {
