@@ -163,6 +163,7 @@ export default function Home() {
                       <p className="text-base font-light mb-3">Get your home's value and see selling options</p>
                          <button className="bg-red-600 p-2  max-w-[150px] hover:bg-red-800 transition duration-200 ease-in cursor-pointer text-white text-semibold rounded-full">Start exploring</button>
                 </div>
+                
                 <img className="md:h-[200px] md:w-[75%] cover rounded-md sm:w-full " src="https://static.rdc.moveaws.com/images/sellerAwareness/seller-banner-tablet-landscape-2x.jpg" alt="" />
                 
 
