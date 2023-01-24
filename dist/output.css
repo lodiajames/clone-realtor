@@ -791,6 +791,14 @@ select {
   top: 0.75rem;
 }
 
+.left-1 {
+  left: 0.25rem;
+}
+
+.bottom-1 {
+  bottom: 0.25rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -934,6 +942,10 @@ select {
   max-width: 200px;
 }
 
+.max-w-\[90\%\] {
+  max-width: 90%;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -1040,6 +1052,18 @@ select {
   border-radius: 0.5rem;
 }
 
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
+.rounded-br-3xl {
+  border-bottom-right-radius: 1.5rem;
+}
+
+.rounded-tr-3xl {
+  border-top-right-radius: 1.5rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1123,6 +1147,21 @@ select {
 .bg-red-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#457b9d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(69 123 157 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#e63946\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 57 70 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#1952B8\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 82 184 / var(--tw-bg-opacity));
 }
 
 .object-cover {
@@ -1327,6 +1366,15 @@ select {
 .text-green-800 {
   --tw-text-opacity: 1;
   color: rgb(22 101 52 / var(--tw-text-opacity));
+}
+
+.text-\[\#f1faee\] {
+  --tw-text-opacity: 1;
+  color: rgb(241 250 238 / var(--tw-text-opacity));
+}
+
+.opacity-90 {
+  opacity: 0.9;
 }
 
 .shadow-md {
