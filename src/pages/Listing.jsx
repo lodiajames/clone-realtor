@@ -21,15 +21,17 @@ import SwiperCore, {
 } from "swiper";
 import "swiper/css/bundle";
 
-// import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import ContactLandLord from "../components/ContactLandLord";
 
 
 export default function Listing() {
-  // const auth = getAuth();
+  const auth = getAuth();
   const params = useParams();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareLinkCopy, setShareLinkCopy] = useState(false)
+  const [contactLandLord, setContactLandLord] = useState(false)
 
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   useEffect(() => {
@@ -85,8 +87,8 @@ export default function Listing() {
          <p className="fixed top-[23%] right-[5%] font-semibold border-2 border-gray-200 rounded-md bg-white z-10 p-2">Link Copied</p>
       )}
       
-      <div className=" mx-auto p-4 rounded-lg lg:space-x-5 shadow-lg flex flex-col md:flex-row max-w-6xl lg:mx-auto">
-         <div className="w-full h-[200px] lg-[400px]">
+      <div className=" m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg shadow-lg bg-white lg:space-x-5]">
+         <div className="w-full ">
              <p className="text-2xl font-bold mb-3 text-blue-900 ">{listing.name} - ${listing.offer ? listing.discountPrice.toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",") : listing.regularPrice.toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -98,18 +100,33 @@ export default function Listing() {
                            <p className="w-full max-w-[200px] bg-green-800 p-1 text-white text-center rounded-md font-semibold shadow-md">${listing.regularPrice - listing.discountPrice} discount</p>
                         )}
                 </div>
-                <p className="mt-3 mb-3"><span className="semibold">Description - </span> <span>{listing.description}</span></p>
+                <p className="mt-3 mb-3"><span className="font-semibold">Description - </span> <span>{listing.description}</span></p>
        
-                 <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold">
+                 <ul className=" mb-6 flex items-center space-x-2 sm:space-x-10 text-sm font-semibold">
                      <li className="flex items-center whitespace-nowrap"> <FaBed className="text-lg mr-1"/>{+listing.beds>1 ? `${listing.beds} Beds` : "1 Bed"}</li>
                      <li className="flex items-center whitespace-nowrap"> <FaBath className="text-lg mr-1"/>{+listing.bath>1 ? `${listing.bath} Baths` : "1 Bath"}</li>
                      <li className="flex items-center whitespace-nowrap"> <FaParking className="text-lg mr-1"/>{+listing.parking>1 ? `${listing.parking} Parking Available` : " No Parking"}</li>
                      <li className="flex items-center whitespace-nowrap"> <FaCouch className="text-lg mr-1"/>{+listing.furnished>1 ? `${listing.furnished} furnished` : " No Furnished"}</li>
 
                  </ul>
+                   
+
+                 {(listing.userRef !== auth.currentUser?.uid && !contactLandLord) &&(
+
+                 <div className="mt-6" onClick={()=>setContactLandLord(true)}>
+                  
+                 <button className="px-7 py-3 rounded shadow-md hover:bg-blue-800 hover:shadow-lg bg-blue-600 text-white  font-medium text-sm uppercase cursor-pointer
+                 focus:bg-blue-700 focus:shadow-lg w-full transition duration-150 ease-in-out ">Contact Landlord</button>
+                 </div>
        
+                 )}
+                 {contactLandLord && (
+                  <ContactLandLord  userRef={listing.userRef} listing={listing}/>
+                 )}
+
+                 
          </div>
-         <div className="bg-blue-300  w-full h-[200px] lg-[400px] z-10 overflow-x-hidden"></div>
+         <div className=" bg-slate-700 w-full h-[200px] lg-[400px] z-10 overflow-x-hidden"></div>
       </div>
     
        
