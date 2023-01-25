@@ -29,8 +29,9 @@ export default function Header() {
               <header className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
                 {/* logo */}
                      <div className="">
-                          <img src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg" alt="realtor logo" 
-                          className=' cursor-pointer h-5' onClick={()=> navigate('/')}/>
+              
+                          <img src="../realtor.png" alt="realtor logo" 
+                          className=' cursor-pointer h-10' onClick={()=> navigate('/')}/>
                      </div>
                      {/* menu */}
                      <div className="">

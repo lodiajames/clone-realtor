@@ -157,14 +157,17 @@ export default function Home() {
       </div>
           
            {/* bottom */}
-           <div className=" rounded sm:flex md:flex mb-6 mt-6 justify-center items-center max-w-6xl mx-auto ">
-           <div className="bg-[#F7F7F7] h-[200px] py-4 px-4 flex flex-col">
-                   <h2 className="mb-3 text-lg font-extrabold whitespace-nowrap">Let's find the right selling option for you</h2>
-                      <p className="text-base font-light mb-3">Get your home's value and see selling options</p>
-                         <button className="bg-red-600 p-2  max-w-[150px] hover:bg-red-800 transition duration-200 ease-in cursor-pointer text-white text-semibold rounded-full">Start exploring</button>
+           <div className="mt-6 mb-6 max-w-6xl mx-auto bg-[#F7f7f7] px-4 rounded-lg ">
+             <div className="grid md:grid-cols-2">
+             <div className="  pt-6 flex flex-col justify-center items-center mb-6">
+                   <h2 className="mb-3 font-semibold  md:text-lg">Let's find the right selling option for you</h2>
+                      <p className="mb-3">Get your home's value and see selling options</p>
+                         <button className="bg-red-600 px-4 py-3 rounded-full text-white hover:bg-red-700 cursor-pointer transition duration-300 ease-in-out">Start exploring</button>
                 </div>
                 
-                <img className="md:h-[200px] md:w-[75%] cover rounded-md sm:w-full " src="https://static.rdc.moveaws.com/images/sellerAwareness/seller-banner-tablet-landscape-2x.jpg" alt="" />
+                <img className="object-none md:object-cover" src="https://static.rdc.moveaws.com/images/sellerAwareness/seller-banner-tablet-landscape-2x.jpg" alt="" />
+             </div>
+
                 
 
            </div>
